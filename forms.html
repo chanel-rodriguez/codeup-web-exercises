@@ -3,51 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <title>Register With Us</title>
+    <style>
+        div{
+            padding-top: 20px;
+        }
+
+        .bodcolor{
+            background-color: darkturquoise;
+        }
+    </style>
 </head>
-<body>
+<body class="bodcolor">
+<h1>FORMS</h1>
 
 <form method="post" action="http://requestbin.fullcontact.com/16vm0vq1">
 
-    <label for="email">Username(Email):</label>
-    <input id="email" type="text" name="email" placeholder="Enter your Email"> <br>
+    <label for="email">Username:</label>
+    <input id="email" type="text" name="email" placeholder="Enter your Email">
 
+    <p>
     <label for="password">Password:</label>
     <input id="password" type="password" name="password" placeholder="Enter your Password"> <br>
+    </p>
 
     <label for="bio">Bio:</label>
-    <textarea id="bio" name="Bio" cols="30" rows="10"></textarea>
+    <textarea id="bio" name="bio" cols="25" rows="3"></textarea>
 
-    <h3>How did you hear about us?</h3>
-        <label for="bill"> Billboard
+    <hr>
+
+    <h2>How did you hear about us?</h2>
+        <label for="bill">
+            <img height="150" width="200" src="pics/billboard.jpg" alt="billboard">
             <input id="bill" type="radio" name="q1" value="billboard">
         </label>
-
-        <label for="radio"> Radio Advertisement
+        <label for="radio">
+            <img height="150" width="200" src="pics/radio.jpg" alt="radio">
             <input id="radio" type="radio" name="q1" value="radio advertisement">
         </label>
-
-        <label for="internet"> Internet Advertisement
+    <br>
+        <label for="internet">
+            <img height="150" width="200" src="pics/www.jpg" alt="www">
             <input id="internet" type="radio" name="q1" value="internet advertisement">
         </label>
-
-        <label for="other"> Other
+        <label for="other">
+            <img height="150" width="200" src="pics/other.jpg" alt="other">
             <input id="other" type="radio" name="q1" value="Other">
         </label>
 
-    <h3>What web browser are you using?</h3>
-    <select name="browser">
+        <label for="friend">
+        <input type="text" name="friend" placeholder="Enter Friend's Name" disabled>
+        </label>
+    <hr>
+
+    <h2>What web browser are you using?</h2>
+    <label for"browser">
+    Browser Type:
+    <select id="browser" name="browser">
         <option value="safari">Safari</option>
         <option value="chrome">Chrome</option>
         <option value="other">Other</option>
     </select>
+    </label>
 
-    <p>
-    <button type="submit">
-        Click to Submit
+    <div>
+    <button type="submit" formtarget="_blank">
+        <img src="pics/clickme.png" alt="click me">
     </button>
-    </p>
-</form>
+    </div>
 
+
+
+</form>
 
 </body>
 </html>
