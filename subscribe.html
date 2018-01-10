@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Parking Pass</title>
+    <style>
+        .spacer{
+            margin-top: 10px;
+        }
+        fieldset{
+            margin-bottom: 15px;
+        }
+        legend{
+            font-weight: bold;
+        }
+        .big{
+            font-size: large;
+        }
+        #skinny{
+            width: 30px;
+        }
+    </style>
+</head>
+<body>
+<h1>Monthly Parking Pass</h1>
+<form action="https://hookb.in/v0P7LAWw" method="post">
+    <fieldset>
+        <legend>Select Desired Location</legend>
+        <table>
+            <tr>
+                <th>Parking Garage</th>
+                <th>Cost</th>
+            </tr>
+            <tr>
+                <td><input type="radio" name="garage" autofocus value="houston">Houston Garage</td>
+                <td>$150</td>
+            </tr>
+            <tr>
+                <td><input type="radio" name="garage" value="st_mary">St.Mary Garage</td>
+                <td>$130</td>
+            </tr>
+            <tr>
+                <td><input type="radio" name="garage" value="travis">Travis Park Plaza</td>
+                <td>$125</td>
+            </tr>
+        </table>
+    </fieldset>
+
+    <fieldset>
+        <legend>Personal Info</legend>
+        <div>
+            First Name <input type="text" name="first_name" required>
+        </div>
+        <div>
+            Last Name <input type="text" name="last_name" required>
+        </div>
+        <div>
+            Mailing Address <input type="text" name="address" size="30" required>
+        </div>
+        <div>
+            Zip Code <input type="number" maxlength="5" size="5" min="0" name="zip_code" required>
+        </div>
+        <div>
+        City <input type="text" name="city" size="30" required>
+        State <input type="text" maxlength="2" size="2" value="TX" name="State" required>
+        <div>
+            Cell Phone <input type="text" name="cell_num" size="15" placeholder="(xxx) xxx-xxxx" required>
+        </div>
+        <div>
+            Email <input type="email" name="email" required>
+        </div>
+
+    </fieldset>
+
+    <fieldset>
+        <legend>Payment Info</legend>
+        <div>
+            Card type: <br>
+            <label> <img width="160" height="100" src="pics/visa.png" alt="visa">
+                <input type="radio" name="cc" value="visa" >
+            </label>
+            <label> <img width="160" height="100" src="pics/amex.jpg" alt="amex">
+                <input type="radio" name="cc" value="amex" >
+            </label>
+            <label> <img width="160" height="100" src="pics/mastercard.png" alt="mastercard">
+                <input type="radio" name="cc" value="mastercard" >
+            </label>
+            <label> <img width="160" height="100" src="pics/discover.jpg" alt="discover">
+                <input type="radio" name="cc" value="discover" >
+            </label>
+        </div>
+        <div class="spacer">
+            Credit Card #: <input type="text" size="40" maxlength="16" name="cc_num" required>
+            Exp Date <input id="skinny" type="text" name="month" size="2" maxlength="2" placeholder="mm" required>
+                <input id="skinny" type="text" name="year" size="2" maxlength="2" placeholder="yy" required>
+            SVC # <input type="text" size="5" maxlength="5" name="svc_num" required>
+        </div>
+
+        <div class="spacer">
+            Use Mailing Address as Billing Address? <input type="checkbox" value="true" name="same_billing_address" checked>
+        </div>
+
+        <div>
+            Billing Address <input type="text" name="address" size="30">
+            City <input type="text" name="city" size="30">
+            State <input type="text" maxlength="2" size="2" name="State">
+            Zip Code <input type="number" maxlength="5" size="5" min="0" name="zip_code">
+        </div>
+
+    </fieldset>
+    <div>
+        <strong>Preferred Contact Method: </strong>
+        <label>Email
+            <input type="checkbox" name="contact" value="email">
+        </label>
+        <label>Text Message
+            <input type="checkbox" name="contact" value="text">
+        </label>
+        <label>Phone Call
+        <input type="checkbox" name="contact" value="Phone Call">
+        </label>
+    </div>
+
+    <div>
+        <strong>Additional Comments:</strong> <br> <textarea name="comments" cols="30" rows="4"></textarea>
+    </div>
+
+    <button class="big spacer">
+        Submit Application
+    </button>
+</form>
+
+</body>
+</html>
