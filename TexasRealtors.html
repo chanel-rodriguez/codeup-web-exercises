@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Application</title>
+
+    <style>
+        .topfont{
+            color: darkblue;
+            font: all-small-caps;
+            text-align: center;
+        }
+        #boldhr{
+            height: 2px;
+            background-color: black;
+        }
+        .tableft{
+            margin-left: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topfont">
+        <h4>TEXAS ASSOCIATION OF REALTORS</h4>
+        <h3>RESIDENTIAL LEASE APPLICATION</h3>
+    </div>
+    <hr id="boldhr">
+    <fieldset>
+        Property Address: <textarea name="prop_address" cols="75" rows="1"> </textarea><br>
+        Anticipated Move-in Date: <input type="text" name="move_in_date">
+        Monthly Rent $<input type="text" name="rent" size="8">
+        Security Deposit $<input type="text" name="deposit" size="8">
+
+        <p>
+            Applicant was referred to Landlord by: <br>
+            <input class="tableft" type="checkbox" value="Real Estate Agent">Real Estate Agent
+            <input type="text" placeholder="Enter Agent's Name">
+        </p>
+
+    </fieldset>
+
+
+</body>
+</html>
