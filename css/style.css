@@ -1,0 +1,33 @@
+#flip{
+    transform: rotate(180deg);
+}
+#ro{
+    transform: rotate(90deg);
+}
+
+h1,h2,h3,h4,h5,h6 {
+    color: black;
+    font-family: "Comic Sans MS";
+    text-decoration: underline;
+}
+body{
+    background-image: url("../pics/miguel3.jpg");
+    background-color: aqua;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Chalkduster;
+}
+ul{
+    list-style: square;
+}
+table {
+    /*border-collapse: collapse;*/
+}
+table, th, td {
+    border: 1px solid red;
+    background-color: black;
+    color: yellow;
+}
+header{
+    background-color: blue;
+}
