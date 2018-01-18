@@ -1,0 +1,156 @@
+img {
+    width: 100%;
+    padding: none;
+}
+body{
+    padding: 0;
+    margin: 0;
+}
+.nav_container{
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    padding:0;
+    background-color: black;
+
+}
+
+.nav_container ul {
+    width: 60%;
+    list-style: none;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin:0 auto;
+}
+.nav_container li{
+    color: white;
+    display: inline;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-right: 1px solid #bbb;
+}
+.nav_container li:last-child {
+    border-right: none;
+}
+.nav_container a{
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover {
+    background-color: blue;
+}
+
+.container{
+    margin: 4em auto;
+    width: 80%;
+    max-width: 1200px;
+}
+.row{
+    width: 100%;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.column {
+    float: left;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    margin-bottom: 1em;
+    /*margin-right: 1em;*/
+
+
+
+}
+.column.one-third {
+    width: 33.3333%;
+}
+.column.one-half {
+    width: 50%;
+}
+.column.one-fourth{
+    width: 25%;
+    background-color: white;
+    border: none;
+    padding: 0;
+    margin: 0;
+
+}
+.column.one-eighth{
+    width: 12.5%;
+}
+.column.three-fourth{
+    width: 75%;
+}
+.column.one-twelve{
+    width: 8.5%;
+}
+.column.eleven-twelve{
+    width:91.5%
+}
+.column.whole{
+    width: 100%;
+}
+.tester{
+    width: 100%;
+    background-color: white;
+    border: none;
+    padding: 0 0 0 1em;
+}
+#tennis{
+    color: white;
+    background-color: #6fb22d;
+    text-transform: uppercase;
+}
+#tennis a{
+    color: white;
+}
+#picdesc{
+    background-color: #e2f3d2;
+    margin: none;
+}
+#picdesc a{
+    color: black;
+}
+a{
+    text-decoration: none;
+}
+#djo{
+    padding: 0;
+    border: 0;
+}
+.img_content{
+    position: absolute;
+    bottom: 0;
+    background-color: #d5d7d9;
+    border: none;
+    width: 50%;
+    opacity: .6;
+    font-size: 1.9em;
+    font-weight: 300;
+    line-height: 1.133333333;
+    margin-bottom: .5em;
+    padding: .1em;
+    font-family: CNN,Helvetica Neue,Helvetica,Arial,Utkal,sans-serif;
+    z-index: 1;
+}
+
+#djo_container{
+    position: relative;
+}
+#more_links{
+    padding:0;
+    border: none;
+}
+#more_links ul{
+    list-style: none;
+    padding: 0;
+    margin: 8px;
+
+}
