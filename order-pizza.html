@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="css/custom.css">
+    <title>Pizza Worldd</title>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Pizza World</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Order Online <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Menu</a></li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Zip Code">
+                </div>
+                <button type="submit" class="btn btn-default">Search Stores near you!</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Sign Up</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+    <div class="jumbotron hidden-xs">
+        <img class="img-responsive" src="pics/pizza.png" alt="pizza">
+        <div class="container">
+            <h1>Welcome to Pizza World!</h1>
+        </div>
+    </div>
+
+    <div class="custom_border">
+        <h2>Build your own Pizza</h2>
+    </div>
+
+<div>
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#"><span class="badge">1</span> Size and Crust</a></li>
+        <li role="presentation"><a href="#"><span class="badge">2</span> Cheese and Sauce</a></li>
+        <li role="presentation"><a href="#"><span class="badge">3</span> Toppings</a></li>
+    </ul>
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">Choose Size and Crust</div>
+        <div class="panel-body">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Hand Tossed
+                </div>
+                <div class="panel-body">
+                    Garlic-seasoned crust with a rich, buttery taste.
+                </div>
+                <div class="panel-info">
+                    <div class="panel-heading">
+                        <input id="smallthin" type="radio" value="small" name="crust">
+                        <Label for="smallthin"> Small (10")</Label>
+                    </div>
+                </div>
+                <div class="panel-info">
+                    <div class="panel-heading">
+                        <input id="medthin" type="radio" value="medium" name="crust">
+                        <Label for="medthin"> Medium (12")</Label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Crunchy thin crust
+                </div>
+                <div class="panel-body">
+                    Thin enough for the optimum crispy to crunchy ratio.
+                </div>
+                <div class="panel-info">
+                    <div class="panel-heading">
+                        <input id="medpi" type="radio" value="medium" name="crust">
+                        <Label for="medpi"> Medium (12")</Label>
+                    </div>
+                </div>
+                <div class="panel-info">
+                    <div class="panel-heading">
+                        <input id="larpi" type="radio" value="large" name="crust">
+                        <label for="larpi"> Large (14")</label>
+                    </div>
+                </div>
+            </div>
+        </div>  <!--closing div for body-->
+    <div class="panel-footer text-right">
+              <button class="btn btn-info"> Next Step
+                  <span class="glyphicon glyphicon-triangle-right glyphicon-align-right" aria-hidden="true"></span>
+                </button>
+    </div>
+</div>
+
+
+<!--################################################  CHEESE ##############################-->
+<div class="panel panel-info">
+    <div class="panel-heading">Choose Cheese and Sauce</div>
+    <div class="panel-body">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Cheese?
+            </div>
+            <div class="panel-info">
+                <div class="panel-heading"> Cheese <br>
+                    <select class="form-control" name="cheeses" id="cheeses">
+                        <option value="light">Light</option>
+                        <option value="Normal">Normal</option>
+                        <option value="Extra">Extra</option>
+                        <option value="Double">Double</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Sauce?
+            </div>
+            <div class="panel-info">
+                <div class="panel-heading">Sauce
+                    <select class="form-control" name="sauces" id="sauces">
+                        <option value="Tomato Sauce">Tomato Sauce</option>
+                        <option value="Marinara Sauce">Marinara Sauce</option>
+                        <option value="BBQ Sauce">BBQ Sauce</option>
+                        <option value="Alfredo Sauce">Alfredo Sauce</option>
+                    </select>
+                </div>
+            </div>
+            <div class="panel-info">
+                <div class="panel-heading"> How Much? <br>
+                    <select class="form-control" name="quatity" id="quantity">
+                        <option value="Light">Light</option>
+                        <option value="Normal">Normal</option>
+                        <option value="Extra">Extra</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>  <!--closing div for body-->
+    <div class="panel-footer text-right">
+        <div class="input-group">
+            <div class="input-group-btn">
+                <button class="btn btn-info">
+                    <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+                    Previous Step
+                </button>
+                <button class="btn btn-info"> Next Step
+                    <span class="glyphicon glyphicon-triangle-right glyphicon-align-right" aria-hidden="true"></span>
+                </button>
+                <!-- Buttons -->
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!--######################################  TOPPINGS #################################################-->
+<div class="panel panel-info">
+    <div class="panel-heading">Choose toppings</div>
+    <div class="panel-body">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Choose meats
+            </div>
+            <div class="panel-info">
+                <div class="panel-heading">
+                    <input type="checkbox" id="beef">
+                    <label for="beef">Beef</label>
+                </div>
+                <div class="panel-heading">
+                    <input type="checkbox" id="ham">
+                    <label for="ham">Ham</label>
+                </div>
+                <div class="panel-heading">
+                    <input type="checkbox" id="Philly Steak">
+                    <label for="Philly Steak">Philly Steak</label>
+                </div>
+                <div class="panel-heading">
+                    <input type="checkbox" id="bacon">
+                    <label for="bacon">Bacon</label>
+                </div>
+
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Choose non-meats
+            </div>
+            <div class="panel-info">
+                <div class="panel-heading">
+                    <input type="checkbox" id="Green Peppers">
+                    <label for="Green Peppers">Green Peppers</label>
+                </div>
+                <div class="panel-heading">
+                    <input type="checkbox" id="Mushrooms">
+                    <label for="Mushrooms">Mushrooms</label>
+                </div>
+                <div class="panel-heading">
+                    <input type="checkbox" id="Onions">
+                    <label for="Onions">Onions</label>
+                </div>
+                <div class="panel-heading">
+                    <input type="checkbox" id="Jalapeno Peppers">
+                    <label for="Jalapeno Peppers">Jalapeno Peppers</label>
+                </div>
+        </div>
+    </div>  <!--closing div for body-->
+    <div class="panel-footer text-right">
+        <button class="btn btn-info"> Checkout
+            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+        </button>
+    </div>
+</div>
+
+
+
+
+
+
+<link rel="stylesheet" href="js/jquery-2.2.4.min.js">
+<link rel="stylesheet" href="js/bootstrap.js">
+</body>
+</html>

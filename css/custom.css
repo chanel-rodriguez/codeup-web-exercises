@@ -1,0 +1,53 @@
+.jumbotron{
+    position: relative;
+    /*background-color: white;*/
+}
+.jumbotron div{
+    opacity: .8;
+    position: absolute;
+    top: 30%;
+    background-color: #eee;
+    width: 100%;
+}
+.jumbotron h1{
+    text-align: center;
+    font-weight: normal;
+}
+.custom_border{
+    border-bottom: 1px solid #eee;
+    margin-bottom: 1em;
+}
+body{
+    margin:0 1em;
+}
+
+input[type="radio"]{
+    display: none;
+}
+
+input[type='radio'] + label::before  {
+    width: 12px;
+    height: 12px;
+    border-radius: 15px;
+    position: relative;
+    background-color: #eee;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 1px solid black;
+    cursor: pointer;
+}
+input[type="radio"]:checked + label::before {
+    width: 12px;
+    height: 12px;
+    border-radius: 15px;
+    position: relative;
+    background-color: blue;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+
