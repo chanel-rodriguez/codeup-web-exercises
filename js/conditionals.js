@@ -16,8 +16,8 @@
  * Can you refactor your code to use functions?
  */
 
+
 // var enterNum = confirm("would you like to enter a number");
-//
 // if (enterNum){
 //     var userNum = prompt("Enter a number: ");
 //     if(isNaN(userNum)){
@@ -137,3 +137,39 @@ function calculateTotal(num,total) {
  */
 // Generate a random number between 0 and 6
 // var luckyNumber = Math.floor(Math.random() * 6);
+
+
+function isValidPassword(password){
+    var Uppercase = '1 Uppercase Character';
+    var Lowercase = '1 Lowercase Character';
+    var Number = '1 number';
+    var noSpecial = 'No Special Characters'
+    var minLength = 'at least 6 Characters long'
+    var reversal = 'Password cannot be the same backwards'
+    var printer = []
+    var criteria = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{6,}$/;
+    while (criteria.test(password) === false){
+        if(/\d/.test(password)=== false){
+            printer.push("\n" + Number);
+        }
+        if(/[a-z]/.test(password)=== false){
+            printer.push("\n" + Lowercase);
+        }
+        if(/[A-Z]/.test(password)=== false){
+            printer.push("\n" + Uppercase);
+        }
+        if(password.length < 6){
+            printer.push("\n" + minLength);
+        }
+        if(/\W/.test(password)){
+            printer.push("\n" + noSpecial);
+        }
+        if(password == password.split('').reverse().join('')){
+            printer.push("\n" + reversal);
+        }
+
+        password = prompt("Your password (" + password + ") does not meet the following criteria: "+ printer+  "\nEnter a new one: ");
+        printer = [];
+    }
+    alert("Your password is finally valid!");
+}
