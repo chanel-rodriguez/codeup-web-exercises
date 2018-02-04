@@ -12,8 +12,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-
-<div class="container">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12';
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="container visible-xs">
 
     <div class="row">
         <div class="col-xs-12">
@@ -21,18 +28,18 @@
         </div>
     </div>
 
-    <div class='col-xs-10 col-xs-offset-1'>
+    <div class='col-xs-10 col-xs-offset-1 removeleftpadding removerightpadding'>
         <h1 class="text-center">CHRIS CONDE</h1>
         <hr id="shorthr">
     </div>
 
     <div class="row">
         <div class="col-xs-8 col-xs-offset-2">
-            <img id="chrispic" src="pics/chris.png" alt="chris">
+            <img id="chrispic" src="pics/chris-quality.png" alt="chris">
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-10 col-xs-offset-1">
+        <div class="col-xs-10 col-xs-offset-1 ">
             <p class="sometopmargin">
                 "As an openly queer musician, Chris Conde combines the classically detached spheres of hip hop, indie rock and avant-garde
                 experimental art punk of the drag variety. In his sometimes hysterical but always poignant bars, Conde strives to relate
@@ -49,7 +56,7 @@
                 a few acoustic instruments, Conde's unabashed dialogue of acceptance sets him apart from the majority in the genres of
                 music he’s connected to."
             </p>
-            <p class="sometopmargin">
+            <p class="sometopmargin" id="photocredit">
                 Photo: Jaime Monzon
             </p>
         </div>
@@ -104,6 +111,69 @@
     </div>
 
 </div>
+
+<div class="container hidden-xs">
+    <div class="row">
+        <div class="col-sm-8 marginbottom">
+            <iframe class="marginbottom" style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=4174281968/size=small/bgcol=333333/linkcol=ffffff/transparent=true/" seamless><a href="http://chrisconde.bandcamp.com/album/twisted-kite-strings">Twisted Kite Strings by Chris Conde</a></iframe>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <img class="marginbottom" id="chrispic" src="pics/chris-quality.png" alt="chris">
+                <div class="row">
+                    <p id="headlinelarge"><b>FEATURED</b></p>
+                </div>
+            </div>
+            <div class="col-sm-9 removeleftpadding">
+                <h1 id="christitle">CHRIS CONDE</h1>
+                <hr class="removemarginleft" id="shorthr">
+                <div class="row">
+                    <p class="sometopmargin paddingleft paddingright">
+                        "As an openly queer musician, Chris Conde combines the classically detached spheres of hip hop, indie rock and avant-garde
+                        experimental art punk of the drag variety. In his sometimes hysterical but always poignant bars, Conde strives to relate
+                        to his audience through an honest communication of his personal narrative of overcoming drug addiction, internalized
+                        homophobia and self-acceptance.
+                    </p>
+                    <p class="sometopmargin paddingleft paddingright">
+                        His unflinchingly genuine persona is distributed evenly across a variety of melodious reincarnations – Diamond Daggerz
+                        the drag queen rapper/alter-ego whose obsessed with all things occult, Chris Conde the banjo and guitar-playing folk
+                        singer and Chris Conde – leader of numerous alternative-rap subsidiary projects. As a clever lyricist with an eccentric
+                        persona, Conde's performances resonate with any audience member who has ever felt jumbled up in a liminal state of
+                        ambiguity. He is constantly trying to obtain a sense of solace and understanding, a message of undeniable reliability.
+                        Whether rapping in full drag to a produced beat, singing with a fully-backed orchestration or simply crooning alongside
+                        a few acoustic instruments, Conde's unabashed dialogue of acceptance sets him apart from the majority in the genres of
+                        music he’s connected to."
+                    </p>
+                    <p class="sometopmargin paddingleft paddingright" id="photocredit">
+                        Photo: Jaime Monzon
+                    </p>
+
+                </div>
+                <div class="row paddingleft paddingright" id="video">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe id="lessTall" class="embed-responsive-item" src="https://www.youtube.com/embed/Skzex3AGgJI?rel=0"
+                                height="215" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        </div>
+
+        <div class="col-sm-4">
+            <div class="vl col-sm-1 removeleftpadding">
+
+            </div>
+            <div class="col-sm-11">
+                <div class="fb-page" data-href="https://www.facebook.com/chrisconde" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/chrisconde" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/chrisconde">Chris Conde</a></blockquote></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 

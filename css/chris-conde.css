@@ -16,10 +16,22 @@ li{
     width: 50px;
     margin-top: 17px;
 }
+#shorthrlargepage{
+    border: 2px solid black;
+    width: 50px;
+    margin-top: 17px;
+    margin-left: 0;
+    margin-right: 0;
+}
 .sometopmargin{
     margin-top: 20px;
     font-size: 17px;
-    line-height: 1.7em;
+    line-height: 1.8em;
+}
+@media screen and  (min-width: 768px){
+    .sometopmargin{
+        font-size: 12px;
+    }
 }
 #marginleft{
     margin-left: 20px;
@@ -35,11 +47,15 @@ li{
 #video{
     margin-top: 50px;
     margin-bottom: 80px;
+    max-width: 540px;
 }
 #headline{
     font-weight: bold;
     font-size: 20px;
-
+}
+#headlinelarge{
+    font-weight: bold;
+    font-size: 18px;
 }
 #bottomhr{
     margin-top: 5px;
@@ -57,5 +73,41 @@ li{
     width: 50px;
     text-align: center;
 }
-
+#photocredit{
+    color: #e4e5e8;
+}
+.marginbottom{
+    margin-bottom: 20px;
+}
+#christitle{
+    margin-top: 0;
+    /*padding-left: 0;*/
+    /*padding-right: 0;*/
+}
+.removemarginleft{
+    margin-left: 0;
+}
+.removeleftpadding{
+    padding-left: 0;
+}
+.removerightpadding{
+    padding-right: 0;
+}
+.paddingleft{
+    padding-left: 15px;
+}
+.paddingright{
+    padding-right: 15px;
+}
+.vl{
+    border-left: 2px solid #e4e5e8;
+    height: 1230px;
+    display: inline;
+}
+p{
+    max-width: 540px;
+}
+.leftpadding10{
+    padding-left: 10px;
+}
 
