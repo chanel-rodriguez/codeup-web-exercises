@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Google Maps</title>
+
+    <style>
+        #map{
+            width: 80%;
+            height: 300px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div id="map">
+
+</div>
+
+<div>
+    <label for="address"> Enter address:
+        <input id="address" type="text" name="address">
+    </label>
+    <button id="finder">Find!</button>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDudFvHBxcu7tWBUlyp7DxiAc9qvM8N0yM"></script>
+
+<script>
+    'use strict';
+    var finder = document.getElementById('finder');
+    finder.onclick = function () {
+        var newAddress = document.getElementById('address').value;
+        geocodeit(newAddress);
+    }
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: {
+            lat: 29.4260,
+            lng: -98.4861},
+        zoom: 17
+    });
+
+    var myAddress =  '6105 Tamaron, Schertz, Texas 78108'
+
+
+    function geocodeit(address) {
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({"address": address}, function (results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+            } else {
+                alert("Geocoding was not successful - STATUS: " + status);
+            }
+        })
+    }
+</script>
+
+
+</body>
+</html>
