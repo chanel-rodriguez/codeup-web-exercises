@@ -32,6 +32,25 @@
 
 <script>
     'use strict';
+    function latandlon(address) {
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({"address": address}, function (results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                 var a =results[0].geometry.location;
+                 return {
+                     lat: a.lat(),
+                     lng: a.lng()
+                 }
+
+            } else {
+                alert("Invalid location was not successful - STATUS: " + status);
+            }
+        })
+    }
+
+
+
+
     var finder = document.getElementById('finder');
     finder.onclick = function () {
         var newAddress = document.getElementById('address').value;
@@ -41,8 +60,10 @@
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {
             lat: 29.4260,
-            lng: -98.4861},
-        zoom: 17
+            lng: -98.4861
+        },
+        zoom: 17,
+        // mapTypeId: google.maps.MapTypeId.SATELLITE
     });
 
     var myAddress =  '6105 Tamaron, Schertz, Texas 78108'
@@ -58,6 +79,17 @@
             }
         })
     }
+
+    // var codeup = { lat: 29.426791, lng: -98.489602 };
+    //
+    // // Add the marker to our existing map
+    // var marker = new google.maps.Marker({
+    //     position: codeup,
+    //     map: map
+    // });
+
+
+
 </script>
 
 
