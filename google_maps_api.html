@@ -38,7 +38,8 @@
     var marker = new google.maps.Marker({
         position: modpizza,
         map: map,
-        icon: 'pics/pizza.png'
+        // icon: iconBase + ''
+        draggable: true
     });
     var infowindow = new google.maps.InfoWindow({
         content: "<h1>Welcome to Mod Pizza!!!</h1>"
