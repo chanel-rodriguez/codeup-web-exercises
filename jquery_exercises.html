@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<h1>Hello World</h1>
+
+<p id="para">This is a test for jQuery</p>
+
+<div class="divs" id='divlist'>
+    <ul id="list">
+        <li>thing1</li>
+        <li>thing2</li>
+        <li>thing3</li>
+    </ul>
+</div>
+
+<div class="divs">
+    Div with some words in it.
+
+    <div class="divs">
+        div inside of a div
+    </div>
+
+</div>
+
+
+
+
+
+<script   src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
+
+<script>
+
+$(document).ready(function(){
+    'use strict';
+    // alert('DOM finished loading');
+
+    // var added = prompt('What do you want to add to the list?')
+    // $('#list').append('<li>' + added + '</li>');
+
+    $('.divs').css('border','1px solid red')
+    // $('li').css('font-size','20px')
+
+    $('li').click(function(){
+        $(this).css('background-color','blue')
+    })
+    $('li').hover(function(){
+        $(this).css('cursor','pointer');
+        $(this).css('color','red')
+    },
+    function(){
+        $(this).css('color','black')
+    })
+
+})
+
+</script>
+
+</body>
+</html>

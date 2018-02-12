@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Memory Game</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        img{
+            width: 100%;
+            height: 170px;
+            /*padding-right: 10px;*/
+        }
+        td{
+            border: 2px solid black;
+
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="block-center text-center">Memorize them!</h1>
+    <div class="row">
+        <div id="gamepage">
+
+        </div>
+    </div>
+</div>
+
+
+<!--######## jQuery-->
+<script   src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
+<script>
+
+$('document').ready(function(){
+    // alert('it works');
+
+    var images = [
+        {id:1,name: 'bear', image:'pics/animals/bear.jpg'},
+        {id:2,name: 'bear', image:'pics/animals/bear.jpg'},
+        {id:3,name: 'cat', image:'pics/animals/cat.jpg'},
+        {id:4,name: 'cat', image:'pics/animals/cat.jpg'}
+        ]
+
+
+    function showPic(picObj){
+        return '<td><div>' + '<img src=' + picObj.image + '>'+ '</div></td>'
+    }
+    function showPics(pics){
+        var html = '<tr>';
+        pics.forEach(function(pic){
+            html += showPic(pic);
+        })
+        html += '</tr>'
+        return html;
+    }
+
+
+
+    // function shuffle(o) {
+    //     for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[&#45;&#45;i], o[i] = o[j], o[j] = x);
+    //     return o;
+    // };
+    // function sequence(num) {
+    //     var numbers = [];
+    //     for (var i = 0; i < num; i++) {
+    //         numbers.push(i);
+    //     }
+    //     return numbers;
+    // }
+    // var randomImages = shuffle();
+
+
+    $('#gamepage').html(showPics(images));
+
+    $('td').click(function(){
+        $(this).css('opacity',0);
+    })
+})
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
