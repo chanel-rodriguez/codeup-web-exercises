@@ -7,6 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Practice</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        .highlight{
+            background-color: yellow;
+            display: inline-block;
+        }
+        #one{
+            background-image: url("pics/thunder.jpg");
+            background-size: cover;
+            height: 200px;
+        }
+        #two{
+            background-image: url("pics/rebel.jpg");
+            background-size: cover;
+            height: 200px;
+        }
+        #three{
+            background-image: url("pics/dark-triangles.png");
+            background-size: cover;
+            height: 200px;
+        }
+    </style>
 </head>
 <body>
 
@@ -17,14 +38,52 @@
     <dd class="invisible">- El Yunque</dd>
 </dl>
 
-<button>Show Answers!</button>
+<button id="answers">Show Answers!</button>
+
+<h3 id="national-parks-heading">National Parks</h3>
+<ul id="national-parks">
+    <li>Arches</li>
+    <li>Badlands</li>
+    <li>Carlsbad Caverns</li>
+    <li>Denali</li>
+    <li>Everglades</li>
+</ul>
+<h3>State Parks of Texas</h3>
+<ul id="state-parks-texas">
+    <li>Abilene</li>
+    <li>Big Bend</li>
+    <li>Choke Canyon</li>
+    <li>Davis Mountains</li>
+    <li>Enchanted Rock</li>
+</ul>
+
+<button id="liButton">Highlight Li</button>
+
+
+<div>
+    <div class="row">
+        <div id="one" class="col-xs-3"></div>
+        <div class="col-xs-1">
+            <button class="buttonOne">Swap</button>
+        </div>
+        <div id="two" class="col-xs-3"></div>
+        <div class="col-xs-1">
+            <button class="buttonTwo">Swap</button>
+        </div>
+        <div id="three" class="col-xs-3"></div>
+        <div class="col-xs-1">
+            <button class="buttonThree">Swap</button>
+        </div>
+    </div>
+</div>
+
 
 <script   src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
 
 <script>
     $(document).ready(function(){
 
-       $('button').click(function(){
+       $('#answers').click(function(){
            $('dd').toggleClass('invisible');
            if($('dd').hasClass('invisible')===false){
                $('button').text('Hide Answers');
@@ -32,6 +91,40 @@
                $('button').text('Show Answers');
            }
        })
+
+        $('dt').click(function(){
+            $(this).toggleClass('highlight');
+
+        })
+
+        $('#liButton').click(function(){
+            $('ul').each(function(index,element){
+                $(element).children().last().addClass('highlight');
+            })
+        })
+
+        $('h3').click(function(){
+            $(this).next().first().children().each(function(index,element){$(element).css('font-weight','bold')})
+        })
+
+        function swapLeft(one,two){
+            var a = $(one).css('background-image');
+            $(one).css('background-image',$(two).css('background-image'));
+            $(two).css('background-image',a);
+        }
+
+        $('.buttonOne').click(function(){
+            swapLeft('#one','#two')
+        });
+
+        $('.buttonThree').click(function(){
+            swapLeft('#three','#two');
+        })
+
+        $('.buttonTwo').click(function(){
+            var b = ['#one','#three'];
+            swapLeft('#two',b[Math.floor(Math.random()*2)]);
+        })
 
 
 
