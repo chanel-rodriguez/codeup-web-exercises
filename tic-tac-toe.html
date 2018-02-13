@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        .square{
+            width: 75px;
+            height: 75px;
+            border: 1px solid black;
+            display: inline-block;
+            text-align: center;
+            font-size: 60px;
+        }
+        .float{
+            float: left;
+        }
+        h3{
+            text-decoration: underline;
+        }
+        #turns{
+            margin-bottom: 70px;
+            font-size: 3vw;
+        }
+        h4{
+            color: #0e60df;
+            font-size: 22px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div>
+        <h1 class="block-center text-center">TIC-TAC-TOE</h1>
+    </div>
+    <div class="col-xs-4">
+        <h3 class="text-left">Player one</h3>
+        <h4 id="p1"></h4>
+    </div>
+
+    <div class="col-xs-4">
+        <p class="text-center" id="turns">Go Player 1</p>
+        <div class="row">
+            <div id="s1" class="square float"></div>
+            <div id="s2" class="square float"></div>
+            <div id="s3" class="square float"></div>
+        </div>
+        <div class="row">
+            <div id="s4" class="square float"></div>
+            <div id="s5" class="square float"></div>
+            <div id="s6" class="square float"></div>
+        </div>
+        <div class="row">
+            <div id="s7" class="square float"></div>
+            <div id="s8" class="square float"></div>
+            <div id="s9" class="square float"></div>
+        </div>
+        <div class="col-xs-12">
+            <button>Restart</button>
+        </div>
+    </div>
+
+
+    <div class="col-xs-4">
+        <h3 class="text-left">Player two</h3>
+        <h4 id="p2"></h4>
+    </div>
+
+</div>
+
+
+
+<script   src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(){
+        'use strict';
+
+        var players=[
+            {name:prompt('Enter Player 1\'s Name: '),value:'X'},
+            {name:prompt('Enter Player 2\'s Name: '),value:'O'}
+        ]
+        function showPlayers(){
+                $('#p1').html(players[0].name);
+                $('#p2').html(players[1].name);
+                $('#turns').html('GO ' + players[0].name.toUpperCase());
+            }
+        showPlayers();
+
+
+        function checkWinner(value){
+            if(
+                $('#s1').html() === value && $('#s2').html() === value && $('#s3').html() === value  ||
+                $('#s1').html() === value && $('#s4').html() === value && $('#s7').html() === value  ||
+                $('#s1').html() === value && $('#s5').html() === value && $('#s9').html() === value  ||
+                $('#s2').html() === value && $('#s5').html() === value && $('#s8').html() === value ||
+                $('#s3').html() === value && $('#s5').html() === value && $('#s7').html() === value ||
+                $('#s3').html() === value && $('#s6').html() === value && $('#s9').html() === value ||
+                $('#s4').html() === value && $('#s5').html() === value && $('#s6').html() === value ||
+                $('#s7').html() === value && $('#s8').html() === value && $('#s9').html() === value
+            ){
+                return true;
+            }
+        }
+
+        var turn = 0;
+
+        $('.square').click(function(){
+            if(turn ===0){
+                $(this).html(players[turn].value);
+                setTimeout(function(){
+
+                if(checkWinner(players[turn].value)){
+                 alert(players[turn].name + ' Wins!!');
+                }else {
+                    turn++;
+                    $('#turns').html('GO ' + players[turn].name.toUpperCase());
+                }
+                },100)
+            }
+            else if(turn ===1){
+                $(this).html(players[turn].value);
+
+                setTimeout(function(){
+
+                if(checkWinner(players[turn].value)){
+                    alert(players[turn].name + ' Wins!!');
+                } else {
+                    turn--;
+                    $('#turns').html('GO ' + players[turn].name.toUpperCase());
+                }
+                },100)
+            }
+
+        })
+        $('button').click(function(){
+            $('#s1,#s2,#s3,#s4,#s5,#s6,#s7,#s8,#s9').text('');
+        })
+
+
+        $('#p1').click(function(){
+            players[0].name=prompt('Enter new name: ');
+            showPlayers();
+        })
+        $('#p2').click(function(){
+            players[1].name=prompt('Enter new name: ');
+            showPlayers();
+        })
+
+
+
+    })
+
+</script>
+
+</body>
+</html>
