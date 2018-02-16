@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Store</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        table{
+            font-family: Avenir;
+        }
+        th{
+            text-align: center;
+        }
+        #products{
+            width: 60%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container text-center">
+<h1>My Tool Store</h1>
+
+    <label for="search">
+        <input id="search" type="text" placeholder="Search By...">
+    </label>
+    <label for="title">
+        Title<input id="title" name="searchType" type="radio" value="title" checked>
+    </label>
+    <label for="category">
+        Category<input id="category" name="searchType" type="radio" value="categories">
+    </label>
+
+
+<table id="products" class="table table-hover table-bordered table-condensed">
+    <thead>
+        <tr class="warning">
+            <th>Title</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Categories</th>
+        </tr>
+    </thead>
+    <tbody id="insertProducts">
+
+    </tbody>
+</table>
+
+<button id="update">Update Table</button>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script>
+// (function() {
+    "use strict";
+    // TODO: Create an ajax GET request for /data/inventory.json
+    function getData(){
+        $.ajax('data/inventory.json').done(function(data,status,jqxhr){
+            console.log(data);
+            var input = $('#search').val();
+            var newArr = [];
+                if(input !==''){
+                    if($("input[name='searchType']:checked").val()==='categories'){
+                        data.forEach(function(element){
+                            if(element.categories.join('').includes(input.toLowerCase())){
+                                newArr.push(element);}
+                        })
+                        updateTable(newArr);
+                    } else {
+                        data.forEach(function(element){
+                            if(element.title.toLowerCase().includes(input.toLowerCase())){
+                                newArr.push(element);}
+                        })
+                        updateTable(newArr);
+                    }
+                } else{
+                    updateTable(data);
+                }
+        })
+    }
+
+    // TODO: Take the data from inventory.json and append it to the products table
+    //       HINT: Your data should come back as a JSON object; use console.log() to inspect
+    //             its contents and fields
+    //       HINT: You will want to target #insertProducts for your new HTML elements
+
+    function updateTable(arr){
+        // var dataArr = getData();
+        var html = '';
+        arr.forEach(function(element){
+            html +='<tr class="info">';
+            html +='<td>' + element.title + '</td>' + '<td>' + element.quantity + '</td>' + '<td>' + element.price + '</td>' ;
+            html +='<td>' + element.categories +'</td>';
+            html +='</tr>';
+        })
+        $('#insertProducts').html(html);
+    }
+    getData();
+
+    $('#update').click(getData);
+
+
+    $('#search').keyup(getData);
+    $('#title').click(getData);
+    $('#category').click(getData);
+
+
+
+// })();
+</script>
+
+</body>
+</html>

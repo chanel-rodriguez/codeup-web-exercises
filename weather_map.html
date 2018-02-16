@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        #holdData{
+            background-color: rgb(171, 220, 252);
+        }
+        .col-xs-4{
+            border: 1px solid gray;
+            background-color: rgb(242, 242, 242);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div id="holdData" class="row col-xs-12">
+        <h1>Weather Application</h1>
+        <h3>San Antonio</h3>
+
+        <div id="forecastTemps" class="row">
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+<script   src="http://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
+<script>
+
+    function mode(arr){
+        return arr.sort((a,b) =>
+            arr.filter(v => v===a).length
+        - arr.filter(v => v===b).length
+    ).pop();
+    }
+    function avg(arr){
+        return arr.reduce( ( a, o ) => a+o, 0 ) / arr.length;
+    }
+
+    function cleanOut(obj){
+        var today = new Date().getDay();
+        var newList =[];
+        var newObj ={};
+        obj.list.forEach(function(element){
+            if((new Date(element.dt_txt)).getDay() !== today) {
+                newList.push(element);
+                }
+        })
+        newObj.city = obj.city;
+        newObj.list = newList;
+        console.log(newObj);
+        return newObj;
+    }
+
+    $.get("http://api.openweathermap.org/data/2.5/forecast", {
+        APPID: "1162ed9f9c040d43ea638de2f2ba02d8",
+        q:     "San Antonio,US",
+        units: 'imperial'
+    }).done(function(data){
+        data = cleanOut(data);
+        var storage =[];
+        var cloudStorage=[];
+        var humidStorage =[];
+        var iconStorage=[];
+        var maxes=[];
+        var mins=[];
+        var clouds=[];
+        var humid =[];
+        var icon =[];
+
+        var day= (new Date(data.list[0].dt_txt)).getDay();
+        data.list.forEach(function(element){
+            if((new Date(element.dt_txt)).getDay() === day){
+                storage.push(element.main.temp);
+                cloudStorage.push(element.weather[0].description);
+                humidStorage.push(element.main.humidity);
+                iconStorage.push(element.weather[0].icon);
+            }
+            if((new Date(element.dt_txt)).getDay() !== day){
+                maxes.push(storage.reduce((c,b)=>Math.max(c,b)));
+                mins.push(storage.reduce((c,b)=>Math.min(c,b)));
+                clouds.push(mode(cloudStorage));
+                icon.push(mode(iconStorage));
+                humid.push(avg(humidStorage));
+                cloudStorage=[];
+                storage = [];
+                humidStorage=[];
+                iconStorage=[]
+                iconStorage.push(element.weather[0].icon);
+                humidStorage.push(element.main.humidity);
+                cloudStorage.push(element.weather[0].description)
+                storage.push(element.main.temp);
+                day = (new Date(element.dt_txt)).getDay();
+            }
+        })
+        maxes.push(storage.reduce((c,b)=>Math.max(c,b)));
+        mins.push(storage.reduce((c,b)=>Math.min(c,b)));
+        clouds.push(mode(cloudStorage));
+        icon.push(mode(iconStorage));
+
+
+        console.log(maxes);
+        console.log(mins);
+        console.log(data)
+        console.log(clouds)
+        console.log(icon);
+        showWeather(maxes,mins,icon,clouds,humid);
+
+
+    })
+
+    function showWeather(maxArr, minArr,iconArr, cloudsArr,humidArr){
+        var html ='';
+        for(var i =0; i < 3; i ++){
+            var daysOut = (i===0)? ' Day Out' : ' Days Out';
+            html +='<div class="col-xs-4">'+'<h5 class="text-center">'+(i+1)+ daysOut+'<br>' + Math.round(maxArr[i]) + '/' + Math.round(minArr[i]);
+            html +='<br><img src="http://openweathermap.org/img/w/' + iconArr[i] +'.png">';
+            html +='<br><strong>Clouds: </strong>' + cloudsArr[i];
+            html +='<br><strong>Humidity: </strong>' + Math.round(humidArr[i]) + '%';
+            html += '</h5></div>';
+        }
+        $('#forecastTemps').html(html);
+    }
+
+
+
+</script>
+</body>
+</html>

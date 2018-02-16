@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        .middle{
+            margin: 0 auto;
+        }
+        .niceBorder{
+            border: 1px solid lightblue;
+            height: 400px;
+            margin-bottom: 10px;
+            overflow: scroll;
+            margin-right: 3%;
+        }
+        .col-sm-4{
+            width: 30%;
+        }
+        .col-xs-6{
+            width: 47%;
+        }
+        h1:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center" title="Click me to Refresh!">Welcome to my Blog</h1>
+
+    <div id="posts" class="middle row">
+
+    </div>
+
+</div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script>
+
+$(document).ready(function(){
+
+
+    function updateHTML(blogs){
+            var html = '';
+        blogs.forEach(function(blog){
+            html += '<div class="col-xs-6 col-sm-4 niceBorder">' + '<h3 class="text-center">'+ blog.title  +'</h3>' + '<h5 class="text-center">'+ blog.date +'</h5>';
+            html += '<p>' + blog.content + '</p>';
+            html += '</div>';
+        })
+        $('#posts').html(html);
+    }
+
+    function getData() {
+        $.ajax('data/blog.json').done(function (data, status, jqxhr) {
+            console.log(data);
+            updateHTML(data);
+        });
+    }
+    getData();
+
+    $('h1').click(getData);
+
+
+
+
+})
+</script>
+</body>
+</html>
