@@ -7,13 +7,55 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
     <style>
-        #holdData{
-            background-color: rgb(171, 220, 252);
-        }
+
         .col-xs-4{
             border: 1px solid gray;
             background-color: rgb(242, 242, 242);
+        }
+        .col-xs-3{
+            border: 1px solid gray;
+            background-color: rgb(242, 242, 242);
+        }
+        .col-xs-2{
+            border: 1px solid gray;
+            background-color: rgb(242, 242, 242);
+            width: 20%;
+        }
+        .col-xs-2 h5{
+            font-size: 12px;
+        }
+        #forecastTemps{
+            margin-bottom: 50px;
+        }
+        #cityName{
+            font-family: 'Permanent Marker', cursive;
+            font-size: 65px;
+        }
+
+        #map{
+            width: 60%;
+            height: 300px;
+            margin: auto;
+        }
+        body{
+            /*background-color: rgb(171, 220, 252);*/
+            background-image: url("https://images.unsplash.com/23/pink-sky.JPG?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=90d4c383c3da89263892a780eb21c1bf&auto=format&fit=crop&w=1055&q=80");
+        }
+        label{
+            font-size: 12px;
+
+        }
+        fieldset{
+            text-align: center;
+        }
+        .big{
+            font-size: 20px;
+            font-weight: 700px;
+        }
+        .numSize{
+            font-size: 16px;
         }
     </style>
 </head>
@@ -21,23 +63,41 @@
 
 <div class="container">
 
-    <div id="holdData" class="row col-xs-12">
-        <h1>Weather Application</h1>
-        <h3>San Antonio</h3>
+    <div id="holdData" class="row">
+        <div class="col-xs-12">
+            <h1 class="text-center"><span id="cityName">San Antonio</span></h1>
+            <h3 class="text-center">How Many Days?</h3>
+            <fieldset>
+                <label for="ThreeDay">
+                    <input id="ThreeDay" name="numDays" value="3" type="radio" checked> 3 Day Forecast
+                </label>
+                <label for="FourDay">
+                    <input id="FourDay" name="numDays" value="4" type="radio"> 4 Day Forecast
+                </label>
+                <label for="FiveDay">
+                    <input id="FiveDay" name="numDays" value="5" type="radio"> 5 Day Forecast
+                </label>
+            </fieldset>
 
-        <div id="forecastTemps" class="row">
+            <div id="forecastTemps" class="row">
 
+            </div>
+
+            <div id="map">
+
+            </div>
         </div>
-
     </div>
+
 </div>
 
 
 
 
 
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDudFvHBxcu7tWBUlyp7DxiAc9qvM8N0yM"></script>
 <script   src="http://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script>
 
     function mode(arr){
@@ -61,72 +121,93 @@
         })
         newObj.city = obj.city;
         newObj.list = newList;
-        console.log(newObj);
+        // console.log(newObj);
         return newObj;
     }
 
-    $.get("http://api.openweathermap.org/data/2.5/forecast", {
-        APPID: "1162ed9f9c040d43ea638de2f2ba02d8",
-        q:     "San Antonio,US",
-        units: 'imperial'
-    }).done(function(data){
-        data = cleanOut(data);
-        var storage =[];
-        var cloudStorage=[];
-        var humidStorage =[];
-        var iconStorage=[];
-        var maxes=[];
-        var mins=[];
-        var clouds=[];
-        var humid =[];
-        var icon =[];
+    var laty = {lat:29.423017, lng:-98.48527}
+    function getWeather(location) {
+        $.get("http://api.openweathermap.org/data/2.5/forecast", {
+            APPID: "1162ed9f9c040d43ea638de2f2ba02d8",
+            lat: location.lat,
+            lon: location.lng,
+            units: 'imperial'
+        }).done(function (data) {
+            data = cleanOut(data);
+            var city = data.city.name;
+            var storage = [];
+            var cloudStorage = [];
+            var humidStorage = [];
+            var iconStorage = [];
+            var maxes = [];
+            var mins = [];
+            var clouds = [];
+            var humid = [];
+            var icon = [];
+            var days= [(new Date(data.list[0].dt_txt)).getDay()];
+            var day = (new Date(data.list[0].dt_txt)).getDay();
 
-        var day= (new Date(data.list[0].dt_txt)).getDay();
-        data.list.forEach(function(element){
-            if((new Date(element.dt_txt)).getDay() === day){
-                storage.push(element.main.temp);
-                cloudStorage.push(element.weather[0].description);
-                humidStorage.push(element.main.humidity);
-                iconStorage.push(element.weather[0].icon);
-            }
-            if((new Date(element.dt_txt)).getDay() !== day){
-                maxes.push(storage.reduce((c,b)=>Math.max(c,b)));
-                mins.push(storage.reduce((c,b)=>Math.min(c,b)));
-                clouds.push(mode(cloudStorage));
-                icon.push(mode(iconStorage));
-                humid.push(avg(humidStorage));
-                cloudStorage=[];
-                storage = [];
-                humidStorage=[];
-                iconStorage=[]
-                iconStorage.push(element.weather[0].icon);
-                humidStorage.push(element.main.humidity);
-                cloudStorage.push(element.weather[0].description)
-                storage.push(element.main.temp);
-                day = (new Date(element.dt_txt)).getDay();
-            }
+            data.list.forEach(function (element) {
+                if ((new Date(element.dt_txt)).getDay() === day) {
+                    storage.push(element.main.temp);
+                    cloudStorage.push(element.weather[0].description);
+                    humidStorage.push(element.main.humidity);
+                    iconStorage.push(element.weather[0].icon);
+                }
+                if ((new Date(element.dt_txt)).getDay() !== day) {
+                    maxes.push(storage.reduce((c, b) => Math.max(c, b)));
+                    mins.push(storage.reduce((c, b) => Math.min(c, b)));
+                    clouds.push(mode(cloudStorage));
+                    icon.push(mode(iconStorage));
+                    humid.push(avg(humidStorage));
+                    days.push((new Date(element.dt_txt)).getDay());
+                    cloudStorage = [];
+                    storage = [];
+                    humidStorage = [];
+                    iconStorage = []
+                    iconStorage.push(element.weather[0].icon);
+                    humidStorage.push(element.main.humidity);
+                    cloudStorage.push(element.weather[0].description)
+                    storage.push(element.main.temp);
+                    day = (new Date(element.dt_txt)).getDay();
+                }
+            })
+            maxes.push(storage.reduce((c, b) => Math.max(c, b)));
+            mins.push(storage.reduce((c, b) => Math.min(c, b)));
+            clouds.push(mode(cloudStorage));
+            icon.push(mode(iconStorage));
+            humid.push(avg(humidStorage));
+
+
+
+            // console.log(maxes);
+            // console.log(mins);
+            console.log(data)
+            console.log(days);
+            // console.log(clouds)
+            // console.log(icon);
+
+            $('#cityName').html(city);
+            showWeather(maxes, mins, icon, clouds, humid,days);
+
+
         })
-        maxes.push(storage.reduce((c,b)=>Math.max(c,b)));
-        mins.push(storage.reduce((c,b)=>Math.min(c,b)));
-        clouds.push(mode(cloudStorage));
-        icon.push(mode(iconStorage));
-
-
-        console.log(maxes);
-        console.log(mins);
-        console.log(data)
-        console.log(clouds)
-        console.log(icon);
-        showWeather(maxes,mins,icon,clouds,humid);
-
-
-    })
-
-    function showWeather(maxArr, minArr,iconArr, cloudsArr,humidArr){
+    }
+    getWeather(laty);
+    var daysOfWeek = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var myDay = [];
+    function showWeather(maxArr, minArr,iconArr, cloudsArr,humidArr,daysArr){
         var html ='';
-        for(var i =0; i < 3; i ++){
+        var colNum;
+        if($("input[name='numDays']:checked").val()==3){colNum = '\'col-xs-4\'>';}
+        if($("input[name='numDays']:checked").val()==4){colNum = '\'col-xs-3\'>';}
+        if($("input[name='numDays']:checked").val()==5){colNum = '\'col-xs-2\'>';}
+        daysArr.forEach(e=>myDay.push(daysOfWeek[e]));
+
+        for(var i =0; i < $("input[name='numDays']:checked").val(); i ++){
             var daysOut = (i===0)? ' Day Out' : ' Days Out';
-            html +='<div class="col-xs-4">'+'<h5 class="text-center">'+(i+1)+ daysOut+'<br>' + Math.round(maxArr[i]) + '/' + Math.round(minArr[i]);
+            html +='<div class='+colNum+'<h5 class="text-center">'+'<span class="big">'+myDay[i]+'</span>'+'<br>';
+            html +='<span class="numSize">'+ Math.round(maxArr[i]) + '/' + Math.round(minArr[i]) + '</span>';
             html +='<br><img src="http://openweathermap.org/img/w/' + iconArr[i] +'.png">';
             html +='<br><strong>Clouds: </strong>' + cloudsArr[i];
             html +='<br><strong>Humidity: </strong>' + Math.round(humidArr[i]) + '%';
@@ -134,6 +215,42 @@
         }
         $('#forecastTemps').html(html);
     }
+
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: {
+            lat: 29.4260,
+            lng: -98.4861
+        },
+        zoom: 10,
+        // mapTypeId: google.maps.MapTypeId.SATELLITE
+    });
+
+
+    map.addListener('click', function(e) {
+        placeMarker(e.latLng, map);
+        laty = e.latLng;
+    });
+
+
+    var marker;
+    function placeMarker(location,map) {
+        if ( marker ) {
+            marker.setPosition(location);
+            getWeather(location);
+        } else {
+            marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+            getWeather(location);
+        }
+    }
+
+    $('input').click(function(){
+        getWeather(laty);
+    })
+
 
 
 
