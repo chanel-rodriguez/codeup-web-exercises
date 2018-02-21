@@ -28,6 +28,7 @@
         }
         #forecastTemps{
             margin-bottom: 50px;
+            color: black;
         }
         #cityName{
             font-family: 'Permanent Marker', cursive;
@@ -42,6 +43,8 @@
         body{
             /*background-color: rgb(171, 220, 252);*/
             background-image: url("https://images.unsplash.com/23/pink-sky.JPG?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=90d4c383c3da89263892a780eb21c1bf&auto=format&fit=crop&w=1055&q=80");
+            /*background-image: url("https://media2.giphy.com/media/3o6MbhMKayiGT6iREc/giphy.gif");*/
+            background-size: cover;
         }
         label{
             font-size: 12px;
@@ -76,6 +79,24 @@
                 </label>
                 <label for="FiveDay">
                     <input id="FiveDay" name="numDays" value="5" type="radio"> 5 Day Forecast
+                </label>
+            </fieldset>
+            <h3 class="text-center">Which features?</h3>
+            <fieldset>
+                <label for="weekDay">
+                    <input id="weekDay" type="checkbox" checked> Day of Week
+                </label>
+                <label for="temp">
+                    <input id="temp" type="checkbox" checked>Temperature
+                </label>
+                <label for="iconImage">
+                    <input id="iconImage" type="checkbox" checked>Icon
+                </label>
+                <label for="cloudInfo">
+                    <input id="cloudInfo" type="checkbox" checked>Cloud Info
+                </label>
+                <label for="humidity">
+                    <input id="humidity" type="checkbox" checked> Humidity
                 </label>
             </fieldset>
 
@@ -206,11 +227,12 @@
 
         for(var i =0; i < $("input[name='numDays']:checked").val(); i ++){
             var daysOut = (i===0)? ' Day Out' : ' Days Out';
-            html +='<div class='+colNum+'<h5 class="text-center">'+'<span class="big">'+myDay[i]+'</span>'+'<br>';
-            html +='<span class="numSize">'+ Math.round(maxArr[i]) + '/' + Math.round(minArr[i]) + '</span>';
-            html +='<br><img src="http://openweathermap.org/img/w/' + iconArr[i] +'.png">';
-            html +='<br><strong>Clouds: </strong>' + cloudsArr[i];
-            html +='<br><strong>Humidity: </strong>' + Math.round(humidArr[i]) + '%';
+            html +='<div class='+colNum+'<h5 class="text-center">';
+            if($('#weekDay').prop('checked')){html += '<span class="big">'+myDay[i]+'</span>'+'<br>'};
+            if($('#temp').prop('checked')){html +='<span class="numSize">'+ Math.round(maxArr[i]) + '/' + Math.round(minArr[i]) + '</span>'};
+            if($('#iconImage').prop('checked')){html +='<br><img src="http://openweathermap.org/img/w/' + iconArr[i] +'.png">'};
+            if($('#cloudInfo').prop('checked')){html +='<br><strong>Clouds: </strong>' + cloudsArr[i]};
+            if($('#humidity').prop('checked')){html +='<br><strong>Humidity: </strong>' + Math.round(humidArr[i]) + '%'};
             html += '</h5></div>';
         }
         $('#forecastTemps').html(html);
@@ -251,7 +273,14 @@
         getWeather(laty);
     })
 
-
+$('#forecastTemps').hover(function(){
+    // $('body').css('background-image','url("https://media2.giphy.com/media/3o6MbhMKayiGT6iREc/giphy.gif")');
+    $('body').css('background-image','url("https://media3.giphy.com/media/5HK4TiiBeLSZq/giphy.gif")');
+    $('body').css('color','white');
+},function(){
+    $('body').css('background-image', 'url("https://images.unsplash.com/23/pink-sky.JPG?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=90d4c383c3da89263892a780eb21c1bf&auto=format&fit=crop&w=1055&q=80")');
+    $('body').css('color','black');
+})
 
 
 </script>
