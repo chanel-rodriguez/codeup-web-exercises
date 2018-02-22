@@ -46,7 +46,10 @@
             console.log(users);
             console.log(getElement(users,'shirt_size'));
             // console.log(getAllCars(users));
-            console.log(getCarData(users));
+            // console.log(getElement(users,'car_make'));
+            console.table(getCarData(users));
+            console.log(getAdminsAuthors(users,'is_admin'));
+            console.log(getAdminsAuthors(users,'is_author'));
 
         });
     })
@@ -103,21 +106,56 @@
     }
 
     // 3. Produce a single object called car_data w/ the following properties
-    // - `avg_price`, `avg_new_price`, `avg_used_price`, `top_make`, `top_model`, `total_number`, `number_used`, `number_new`, `highest_price`, `lowest_price`
+    // - `avg_price`, `avg_new_price`, `avg_used_price`, `top_make`, `top_model`,
+    // `total_number`, `number_used`, `number_new`, `highest_price`, `lowest_price`
     //
     function carTypeArr(arr,val){
         let carArr = arr.filter(ele => ele.is_used_car ===val)
         return getPrice(carArr).toFixed(2)/carArr.length;
     }
-    function getTopMake(arr){
-
+    function getTop(arr,str){
+        let max =0;
+        let value;
+        let obj = getElement(arr,str);
+        Object.keys(obj).forEach(val => {
+            if(obj[val] > max){
+                max = obj[val];
+                value = val;
+            }
+        })
+        return value;
     }
+    function getTopModel(arr){
+        let carMake = getTop(arr,'car_make');
+        let singleMake = arr.filter(obj => obj.car_make===carMake)
+        return getTop(singleMake,'car_model');
+    }
+    function findMaxMin(arr){
+        let max = parseFloat(arr[0].price.substr(1));
+        let min = parseFloat(arr[0].price.substr(1));
+        arr.forEach( ({price}) =>{
+            if(parseFloat(price.substr(1)) > max){
+                max = parseFloat(price.substr(1));
+            }
+            if(parseFloat(price.substr(1)) < min){
+                min = parseFloat(price.substr(1));
+            }
+        })
+        return [max,min];
+    }
+
     function getCarData(arr){
         let car_data = {
-            avg_price:getPrice(arr).toFixed(2)/arr.length,
-            avg_new_price:carTypeArr(arr,false),
-            avg_used_price:carTypeArr(arr,true),
-            top_make:0
+            avg_price:'$'+(getPrice(arr).toFixed(2)/arr.length).toFixed(2),
+            avg_new_price:'$'+ carTypeArr(arr,false).toFixed(2),
+            avg_used_price:'$' +carTypeArr(arr,true).toFixed(2),
+            top_make:getTop(arr,'car_make'),
+            top_model:getTopModel(arr),
+            total_number: arr.length,
+            number_used:getElement(arr,'is_used_car').true,
+            number_new:getElement(arr,'is_used_car').false,
+            highest_price:'$'+ findMaxMin(arr)[0],
+            lowest_price:'$' + findMaxMin(arr)[1]
         }
         return car_data;
     }
@@ -126,11 +164,23 @@
 
 
     // 4. Make an array called admins that contains only users who are admins
-    //
     // 5. Make an array called authors that contains only users who are authors
+    function getAdminsAuthors(arr,type){
+        return arr.reduce((acc,obj) =>{
+            if(obj[type]){
+                acc.push(`${obj.first_name} ${obj.last_name}`)
+            }
+            return acc;
+        },[])
+    }
+
     //
     //
-    // 1. Make an object called departments. That departments object should have a property for each department name. The value for each department name should be an array of user objects containing firstName, lastName, department, email, and buzzword
+    //
+    // 1. Make an object called departments. That departments object should have a
+    // property for each department name. The value for each department name should
+    // be an array of user objects containing firstName, lastName, department, email,
+    // and buzzword
 
     // {
     //     "legal": [
